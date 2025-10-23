@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+
+    <title>Java Syntax, Explanation, and Output Statements (Chapter 1)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #ffffff; /* बैकग्राउंड कलर सफ़ेद */
+            color: #000000; /* टेक्स्ट कलर काला */
+        }
+        header {
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #000000;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 2.2em;
+        }
+        h2 {
+            font-size: 1.6em;
+            border-bottom: 1px solid #000000;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            font-style: italic;
+        }
+        h3 {
+            font-size: 1.2em;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        .section {
+             
+            padding: 15px;
+            margin-bottom: 30px;
+            border: 1px dashed #000000;
+            background-color: #ffffff; /* सेक्शन बैकग्राउंड भी सफ़ेद */
+        }
+        /* Code और Keywords को अलग दिखाने के लिए Bold और Monospace Font */
+        .command, .java-code, .highlight {
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+            display: inline-block;
+            background-color: #f0f0f0; /* कमांड/कोड के लिए हल्का शेड */
+            padding: 1px 4px;
+            border-radius: 2px;
+        }
+        .code-block {
+            background-color: #f0f0f0;
+            border: 1px solid #000000;
+            padding: 15px;
+            margin: 15px 0;
+            white-space: pre-wrap;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            border-left: 5px solid #000000;
+            font-size: 0.95em;
+        }
+        pre{
+              font-size: 16px;     
+                
+        }
+        .output-block {
+            background-color: #e0e0e0;
+            border: 1px solid #000000;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .note {
+            background-color: #f7f7f7; /* नोट्स के लिए हल्का शेड */
+            border-left: 5px solid #000000;
+            padding: 10px;
+            margin: 15px 0;
+            font-style: italic;
+        }
+        ul {
+            list-style-type: square;
+            margin-left: 20px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        /* Highlight Class - हाइलाइटिंग के लिए केवल फ़ॉन्ट साइज़ और स्टाइल का उपयोग */
+        .highlight-text {
+            font-weight: bold;
+            font-size: 1.05em;
+            font-style: italic;
+        }
+        
+        
+        
+        
+        
+        @media print {
+    @page {
+        counter-increment: page 1; /* 1 se increment hoga, lekin pehle page ka number 4 hoga */
+        margin: 20mm;
+
+        @bottom-center {
+            content: "Page " counter(page);
+            font-size: 12px;
+        }
+    }
+}
+
+        
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Java Syntax  and  Output </h1>
+        <p>अध्याय 1 (Chapter 1)</p>
+    </header>
+
+    <div class="section-divider"></div>
+      
+  
+    <h1>Java क्या है?</h1>
+
+    <p><span class="highlight">Java</span> एक लोकप्रिय और शक्तिशाली प्रोग्रामिंग भाषा है, जिसे वर्ष 1995 में बनाया गया था।</p>
+
+    <p>यह <strong>Oracle</strong> कंपनी के स्वामित्व में है, और आज <strong>3 बिलियन से अधिक उपकरण</strong> Java पर चलते हैं।</p>
+
+    <h2>Java का उपयोग कहाँ होता है?</h2>
+    <ul>
+        <li>मोबाइल एप्लिकेशन (विशेष रूप से एंड्रॉइड ऐप्स)</li>
+        <li>डेस्कटॉप एप्लिकेशन</li>
+        <li>वेब एप्लिकेशन</li>
+        <li>वेब सर्वर और एप्लिकेशन सर्वर</li>
+        <li>गेम्स</li>
+        <li>डेटाबेस कनेक्शन</li>
+        <li>और भी बहुत कुछ!</li>
+    </ul>
+
+    <h2>Java का उपयोग क्यों करें?</h2>
+    <ul>
+        <li>Java अलग-अलग प्लेटफॉर्म (Windows, Mac, Linux, Raspberry Pi आदि) पर काम करता है।</li>
+        <li>यह दुनिया की सबसे लोकप्रिय प्रोग्रामिंग भाषाओं में से एक है।</li>
+        <li>वर्तमान नौकरी बाज़ार में इसकी बहुत अधिक मांग है।</li>
+        <li>यह सीखने में आसान और उपयोग में सरल है।</li>
+        <li>यह ओपन-सोर्स और मुफ्त है।</li>
+        <li>यह सुरक्षित (Secure), तेज़ (Fast) और शक्तिशाली (Powerful) है।</li>
+        <li>इसकी एक विशाल समुदाय सहायता है (दसियों लाख डेवलपर्स)।</li>
+        <li>Java एक ऑब्जेक्ट ओरिएंटेड भाषा है जो प्रोग्राम्स को स्पष्ट संरचना देती है और कोड के पुन: उपयोग की अनुमति देती है, जिससे विकास की लागत कम होती है।</li>
+        <li>चूँकि Java, C++ और C# के काफ़ी करीब है, इसलिए प्रोग्रामर आसानी से इन भाषाओं के बीच स्विच कर सकते हैं।</li>
+    </ul>
+
+    <div class="section-divider"></div>
+
+      <header>
+      
+    </header>
+  
+    <h1>Java में Naming Styles (केस कन्वेंशन)</h1>
+
+    <p>जावा में, हम अलग-अलग चीज़ों (Elements) को नाम देने के लिए कुछ खास नियम (Rules) मानते हैं। इन्हें <strong>Case Conventions</strong> कहते हैं। इन्हें फॉलो करने से हमारा कोड <strong>पढ़ने में आसान</strong> (Easy to read) और <strong>साफ़-सुथरा</strong> (Clean) लगता है।</p>
+
+    <hr>
+
+    <div class="convention-box">
+        <h2>1. CamelCase (कैमल केस)</h2>
+        <p><strong>पहचान:</strong> नाम हमेशा एक <strong>छोटे अक्षर</strong> (lowercase) से शुरू होता है, और उसके बाद आने वाले हर नए <strong>शब्द का पहला अक्षर बड़ा</strong> (Capital) होता है।</p>
+        
+        <p><strong>उदाहरण (Examples):</strong> <span class="example-code">firstName</span>, <span class="example-code">calculateSalary</span></p>
+
+        <p><strong>उपयोग (Usage) और उदाहरण:</strong></p>
+        <ul class="usage-examples">
+            <li><strong>वेरिएबल (Variable):</strong> <span class="usage-example-code">int maxAdultUserOfYear2025;</span></li>
+            <li><strong>मेथड (Method):</strong> <span class="usage-example-code">public void calculateSalary() { ... }</span></li>
+            <li><strong>ऑब्जेक्ट (Object):</strong> <span class="usage-example-code">Employee empObject = new Employee();</span></li>
+        </ul>
+    </div>
+
+    <div class="convention-box">
+        <h2>2. PascalCase (पास्कल केस)</h2>
+        <p><strong>पहचान:</strong> नाम के <strong>हर शब्द का पहला अक्षर बड़ा</strong> (Capital) होता है।</p>
+        
+        <p><strong>उदाहरण (Examples):</strong> <span class="example-code">String</span>, <span class="example-code">Employee</span>, <span class="example-code">MaxAdultUser</span></p>
+
+        <p><strong>उपयोग (Usage) और उदाहरण:</strong></p>
+        <ul class="usage-examples">
+            <li><strong>क्लास (Class):</strong> <span class="usage-example-code">public class Employee { ... }</span></li>
+            <li><strong>इंटरफ़ेस (Interface):</strong> <span class="usage-example-code">interface Clickable { ... }</span>, <span class="usage-example-code">interface Runnable { ... }</span></li>
+            <li><strong>एक्सेप्शन (Exception):</strong> <span class="usage-example-code">class FileNotFoundException { ... }</span></li>
+        </ul>
+    </div>
+
+    <div class="convention-box">
+        <h2>3. SCREAMING_SNAKE_CASE (स्क्रीमिंग स्नेक केस)</h2>
+        <p><strong>पहचान:</strong> सभी अक्षर <strong>बड़े</strong> (Uppercase) होते हैं, और शब्दों के बीच में <strong>अंडरस्कोर</strong> (<span class="example-code">_</span>) लगाया जाता है।</p>
+        
+        <p><strong>उदाहरण (Examples):</strong> <span class="example-code">MAX_VALUE</span>, <span class="example-code">MAX_USER_COUNT</span></p>
+
+        <p><strong>उपयोग (Usage) और उदाहरण:</strong></p>
+        <ul class="usage-examples">
+            <li><strong>कांस्टेंट (Constants):</strong> <span class="usage-example-code">public static final int MAX_VALUE = 100;</span></li>
+            <li><strong>फाइनल वेरिएबल:</strong> <span class="usage-example-code">static final double PI = 3.14;</span></li>
+        </ul>
+    </div>
+
+    <div class="convention-box">
+        <h2>4. lowercase dot notation (लोअरकेस डॉट नोटेशन)</h2>
+        <p><strong>पहचान:</strong> सभी अक्षर <strong>छोटे</strong> (lowercase) होते हैं, और शब्दों को <strong>डॉट</strong> (<span class="example-code">.</span>) से अलग किया जाता है।</p>
+        
+        <p><strong>उदाहरण (Examples):</strong> <span class="example-code">com.google.app</span>, <span class="example-code">com.q.c</span></p>
+
+        <p><strong>उपयोग (Usage) और उदाहरण:</strong></p>
+        <ul class="usage-examples">
+            <li><strong>पैकेज (Package):</strong> <span class="usage-example-code">package com.mycompany.project;</span></li>
+            <li><strong>रिवर्स डोमेन नाम:</strong> <span class="usage-example-code">package org.apache.commons;</span></li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>केस कन्वेंशन की समरी (Summary of Case Conventions)</h2>
+
+    <table class="summary-table">
+        <thead>
+            <tr>
+                <th>कन्वेंशन (Convention)</th>
+                <th>नाम लिखने का तरीका (Style Example)</th>
+                <th>मुख्य उपयोग (Used for)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>CamelCase</strong></td>
+                <td>
+                    <span class="summary-example">myVariable</span> 
+                    <span class="summary-example">calculateTax()</span> 
+                    <span class="summary-example">empObject</span>
+                </td>
+                <td>वेरिएबल, मेथड्स, ऑब्जेक्ट</td>
+            </tr>
+            <tr>
+                <td><strong>PascalCase</strong></td>
+                <td>
+                    <span class="summary-example">MyClass</span> 
+                    <span class="summary-example">Runnable</span> 
+                    <span class="summary-example">IOException</span>
+                </td>
+                <td>क्लास, इंटरफ़ेस, एक्सेप्शन</td>
+            </tr>
+            <tr>
+                <td><strong>SCREAMING_SNAKE_CASE</strong></td>
+                <td>
+                    <span class="summary-example">MAX_USERS</span> 
+                    <span class="summary-example">DEFAULT_SIZE</span>
+                </td>
+                <td>कांस्टेंट (<span class="summary-example">static final</span> variables)</td>
+            </tr>
+            <tr>
+                <td><strong>lowercase dot notation</strong></td>
+                <td>
+                    <span class="summary-example">com.app.name</span> 
+                    <span class="summary-example">java.util</span>
+                </td>
+                <td>पैकेज नाम</td>
+            </tr>
+        </tbody>
+    </table>
+<hr>
+</div>
+
+
+
+<br>
+<br>
+      <header>
+      
+    </header>
+  
+  
+  
+    <div class="section">
+        <h2>जावा कोड लिखना और चलाना (Writing and Running Java Code)</h2>
+
+        <h3>1. फाइल बनाना (Creating a File)</h3>
+        <p>
+            Linux Terminal या Termux में <span class="command">nano</span> कमांड का उपयोग करके किसी भी नाम से <span class="java-code">.java</span> (small letter) extension की file create करें। File name <span class="highlight-text">PascalCase</span> में रखें।
+        </p>
+        <p>
+            <span class="command">$$cmd \rightarrow nano \ MyFirstCode.java \rightarrow Enter$$</span>
+        </p>
+
+        <h3>2. कोड लिखना (Writing the Code)</h3>
+        <p>
+            अब जो window open होगी उसमें नीचे का कोड लिखें:
+        </p>
+        <div class="code-block">
+            <span class="java-code">public class MyFirstCode {</span><br>
+            <span class="java-code">  public static void main(String[] args) {</span><br>
+            <span class="java-code">    System.out.println("Hello World!");</span><br>
+            <span class="java-code">  }</span><br>
+            <span class="java-code">}</span>
+        </div>
+
+        <h3>3. सेव और बाहर निकलना (Saving and Exiting)</h3>
+        
+            <p>
+    अब <span class="command">Ctrl + O</span> दबाकर फ़ाइल को <span class="highlight-text">save करने की प्रक्रिया</span> शुरू करें,<br>
+    फिर <span class="command">Enter</span> दबाकर फ़ाइल को वास्तव में <span class="highlight-text">save</span> करें।<br>
+    इस window (विंडो) से बाहर जाने के लिए <span class="command">Ctrl + X</span> दबाएँ।
+</p>
+            
+            
+            
+            
+            
+        
+
+        <h3>4. कंपाइल करना (Compiling)</h3>
+        <p>
+            Source Code को compile करने के लिए:
+        </p>
+        <p>
+            <span class="command">$$cmd \rightarrow javac \ MyFirstCode.java \rightarrow Enter$$</span>
+        </p>
+        <p class="note">
+            अगर आपके source code में कोई error नहीं होगी तो cursor अगली लाइन में आ जाएगा। इससे <span class="java-code">MyFirstCode.class</span> (bytecode file) बन जाएगी।
+        </p>
+ 
+            
+            
+            <h3>5. फाइल्स देखना (Viewing Files)</h3>
+    <p>
+        अब अगर source file और class file देखना चाहते हैं तो यह Command रन करें
+    </p>
+            
+            <p>
+            <span class="command">$$cmd \rightarrow ls \  \rightarrow Enter$$</span>
+        </p>
+            
+    
+    <p>
+        आपको <span class="java-code">MyFirstCode.java</span> और <span class="java-code">MyFirstCode.class</span> दिखाई। अब इस class file यानी <span class="java-code">bytecode file</span> या <span class="java-code">compiled java file</span> को run यानी Execute करने के लिए ये नीचे के step की cmd यूज़ करें।
+    </p>
+            
+            
+            
+            
+            
+            
+            
+        <h3>6. रन करना (Running)</h3>
+        <p>
+            Compiled Java file (class file) को <span class="highlight-text">run</span> (Execute) करने के लिए:
+        </p>
+        <p>
+            <span class="command">$$cmd \rightarrow java \ MyFirstCode \rightarrow Enter$$</span>
+        </p>
+        <p>
+            आपको आउटपुट मिलेगा: <span class="java-code">Hello World!</span>
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>जावा कोड की व्याख्या (Explanation of Java Code)</h2>
+
+        <p>
+            इस जावा कोड में सबकुछ <span class="highlight-text">lower case</span> में रहेगा, बस <span class="highlight-text">main method</span> की <span class="highlight-text">String[]</span> में <span class="highlight-text">S</span>, और <span class="highlight-text">System</span> में <span class="highlight-text">S</span> को छोड़कर।
+        </p>
+        <p>
+            आप सिर्फ दो चीज़ें अपनी मर्ज़ी से लिख सकते हैं: <span class="highlight-text">Class का नाम</span> (जो file का नाम होता है और <span class="highlight-text">PascalCase</span> में होता है) और <span class="highlight-text">" "</span> के बीच का <span class="highlight-text">Text</span> (जो screen पर दिखाना चाहते हैं)।
+        </p>
+
+        <h3>The main Method</h3>
+        <p>
+            <span class="highlight-text">main() method</span> प्रत्येक जावा कोड में होनी चाहिए। यह वह जगह है जहाँ से जावा प्रोग्राम run होना <span class="highlight-text">start</span> होता है।
+        </p>
+        <div class="code-block">
+            <span class="java-code">public static void main(String[] args)</span>
+        </div>
+
+        <h3>Curly Braces { }</h3>
+        <ul>
+            <li>
+                <span class="highlight-text">curly braces { }</span> कोड के <span class="highlight-text">ब्लॉक की शुरुआत</span> और <span class="highlight-text">अंत</span> को बताते हैं।
+            </li>
+        </ul>
+
+        <h3>System.out.println() के भाग</h3>
+        <ul>
+            <li>
+                <span class="highlight-text">System</span>: यह एक <span class="highlight-text">built-in java class</span> है।
+            </li>
+            <li>
+                <span class="highlight-text">out</span>: <span class="highlight-text">System</span> का एक <span class="highlight-text">member</span> है जो <span class="highlight-text">output</span> को दिखाता है।
+            </li>
+            <li>
+                <span class="highlight-text">println()</span>: यह एक <span class="highlight-text">method</span> है, जो <span class="highlight-text">print Line</span> का short है।
+            </li>
+        </ul>
+        <p class="note">
+            हमें प्रत्येक जावा <span class="highlight-text">statement</span> के अन्त में <span class="highlight-text">semicolon (;)</span> लगाना होगा।
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>जावा में Output Statement के प्रकार</h2>
+
+        <p>
+            <span class="highlight-text">1. print()</span>: प्रिंट के बाद <span class="highlight-text">cursor</span> उसी लाइन में रहता है।
+        </p>
+        <p>
+            <span class="highlight-text">2. println()</span>: प्रिंट के बाद <span class="highlight-text">नई लाइन ऐड</span> करता है, यानि cursor अगली लाइन में चला जाता है।
+        </p>
+
+        <p>
+            <span class="java-code">\n</span> (<span class="highlight-text">New Line Escape Sequence</span>): न्यूलाइन (<span class="highlight-text">Text</span>) के अन्दर <span class="highlight-text">नई लाइन</span> के लिए उपयोग होता है।
+        </p>
+
+        <h3>कोड उदाहरण (Code Example) 1.1</h3>
+        <div class="code-block">
+            <span class="java-code">public class OutputExample1 {</span><br>
+            <span class="java-code">  public static void main(String[] args) {</span><br>
+            <span class="java-code">    System.out.print("Hello ");</span><br>
+            <span class="java-code">    System.out.println("World!");</span><br>
+            <span class="java-code">    System.out.println("Line\nLine2");</span><br>
+            <span class="java-code">  }</span><br>
+            <span class="java-code">}</span>
+        </div>
+
+        <h3>आउटपुट (Output)</h3>
+        <div class="output-block">
+            Hello World!<br>
+            Line<br>
+            Line2
+        </div>
+    </div>
+
+      <div class="section">
+        <h2>Java Escape Sequences (एस्केप सीक्वेंस)</h2>
+        <p>
+            Java में <span class="highlight-text">characters</span> को <span class="highlight-text">escape</span> करने के लिए <span class="java-code">\</span> का प्रयोग करना पड़ता है।
+        </p>
+        <p>
+            कुछ common Java escape sequences:
+        </p>
+        <ul class="code-block">
+            <li><span class="java-code">\\</span> &nbsp;&nbsp;&nbsp;&nbsp; backslash</li>
+            <li><span class="java-code">\"</span> &nbsp;&nbsp;&nbsp;&nbsp; double quote (<span class="highlight-text">String के अन्दर</span>)</li>
+            <li><span class="java-code">\'</span> &nbsp;&nbsp;&nbsp;&nbsp; single quote</li>
+            <li><span class="java-code">\uXXXX</span> &nbsp;&nbsp; Unicode escape</li>
+            <li><span class="java-code">\n</span> &nbsp;&nbsp;&nbsp;&nbsp; newline</li>
+            <li><span class="java-code">\r</span> &nbsp;&nbsp;&nbsp;&nbsp; carriage return</li>
+            <li><span class="java-code">\t</span> &nbsp;&nbsp;&nbsp;&nbsp; tab</li>
+            <li><span class="java-code">\b</span> &nbsp;&nbsp;&nbsp;&nbsp; backspace</li>
+              
+        </ul>
+        
+        
+        
+        
+        
+        <hr>
+       
+              
+              
+  
+              
+              
+              <h3 style="margin-top: 0;">🧩 उदाहरण  प्रश्न 1.2:</h3>
+<p>एक Java प्रोग्राम लिखिए जो स्क्रीन पर नीचे दिया गया वाक्य बिल्कुल वैसे ही प्रिंट करे:</p>
+<pre style="background-color: #fff; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">He said, "Can you do it?"</pre>
+<p><b>आउटपुट बिल्कुल इसी तरह दिखना चाहिए</b>, जिसमें डबल कोट्स (") और प्रश्नवाचक चिन्ह (?) भी शामिल हों।</p>
+<p><b>💡 संकेत:</b> स्ट्रिंग के अंदर डबल कोट्स प्रिंट करने के लिए एस्केप सीक्वेंस (<code>\"</code>) का उपयोग करें।</p>
+    <hr style="margin: 15px 0;">
+
+    <h3>✅ Solution (Java Code):</h3>
+    <pre style="background-color: #eef; padding: 10px; border: 1px solid #99f; border-radius: 6px;">
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("He said, \"Can you do it?\"");
+    }
+}
+    </pre>
+
+    <h3>🖥️ Output:</h3>
+    <pre style="background-color: #fff; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">He said, "Can you do it?"</pre>
+
+              
+              
+              
+              
+              
+              
+        
+    </div>
+        
+        
+        
+        
+       
+        
+        
+      <div class="section">
+                
+                
+                    <h1>💻 Java में Escape Characters का अभ्यास - 1.1</h1>
+    <p>नीचे दिए गए प्रश्नों में आपको <b>print</b>, <b>println</b> और सभी <b>escape characters</b> का उपयोग करना है:</p>
+
+    <!-- प्रश्न 1 -->
+              <div class="question">
+    <h2>🧩 प्रश्न 1: New Line और Carriage Return</h2>
+    <p><b>प्रश्न:</b> एक Java प्रोग्राम लिखो जो नीचे दिया गया आउटपुट दे:<br>
+    Hello<br>
+    Welcome to Java<br></p>
+
+    <p><b>संकेत:</b><br>
+    "Hello" के बाद नई लाइन <code>\n</code> लगाओ।<br>
+    "World" प्रिंट करो लेकिन फिर "Welcome to Java" का उपयोग करके इसे overwrite कर दो।<br>
+    यानी <code>\r</code> का उपयोग कर "World" की जगह "Welcome to Java" दिखाओ।</p>
+
+    <h3>✅ समाधान:</h3>
+    <pre><code>public class Q1_NewLineCarriage {
+    public static void main(String[] args) {
+        System.out.print("Hello\n");
+        System.out.print("World\rWelcome to Java\n");
+    }
+}</code></pre>
+
+    <h3>💻 आउटपुट:</h3>
+    <pre><code>Hello
+Welcome to Java</code></pre>
+</div>
+              
+              
+              <hr>           
+           
+  
+
+    <!-- प्रश्न 2 -->
+            <div class="question">
+    <h2>🧩 प्रश्न 2: Tab और Backspace</h2>
+    <p><b>प्रश्न:</b> एक Java प्रोग्राम लिखो जो नीचे दिया गया आउटपुट दे:<br>
+    Name:    Ram<br>
+    City:    Noida<br>
+    RollNo:  01<br></p>
+
+    <p><b>संकेत:</b><br>
+    - <code>\t</code> का उपयोग spacing के लिए करो ताकि कॉलम अच्छे से align हों।<br>
+    - <code>\b</code> का उपयोग करके "RollNo" में गलत अंक को हटाओ और सही संख्या दिखाओ।<br>
+    <i>Hint: '1\b01' का उपयोग करके output में "01" प्राप्त किया जा सकता है।</i></p>
+
+    <h3>✅ समाधान:</h3>
+    <pre><code>public class Q2_TabBackspace {
+    public static void main(String[] args) {
+        System.out.println("Name:\tRam");
+        System.out.println("City:\tNoida");
+        System.out.print("RollNo:\t1\b01\n");
+    }
+}</code></pre>
+
+    <h3>💻 आउटपुट:</h3>
+    <pre><code>Name:    Ram
+City:    Noida
+RollNo:  01</code></pre>
+</div>
+              
+
+    
+   
+    <!-- प्रश्न 3 -->
+    <div class="question">
+        <h2>🧩 प्रश्न 3: Single Quote और Double Quote</h2>
+        <p><b>प्रश्न:</b> ऐसा आउटपुट दो:<br>
+        He said, "It's Java time!"<br>
+        '<br>
+        <b>संकेत:</b> <code>\'</code> और <code>\"</code> दोनों का प्रयोग करो।</p>
+
+        <h3>✅ समाधान:</h3>
+        <pre><code>public class Q4_Quotes {
+    public static void main(String[] args) {
+        System.out.println("He said, \"It's Java time!\"");
+        System.out.println('\'');
+    }
+}</code></pre>
+    </div>
+
+    <!-- प्रश्न 4 -->
+    <div class="question">
+        <h2>🧩 प्रश्न 4: Backslash और Combination Escape Characters</h2>
+        <p><b>प्रश्न:</b> नीचे जैसा आउटपुट देने वाला प्रोग्राम लिखो:<br>
+        C:\Program Files\Java\bin<br>
+        "Java\tCode\nPractice"<br>
+        <b>संकेत:</b> <code>\\</code> बैकस्लैश प्रिंट करता है और बाकी escape characters को टेक्स्ट के रूप में दिखाओ।</p>
+
+        <h3>✅ समाधान:</h3>
+        <pre><code>public class Q5_BackslashCombo {
+    public static void main(String[] args) {
+        System.out.println("C:\\Program Files\\Java\\bin");
+        System.out.println("\"Java\\tCode\\nPractice\"");
+    }
+}</code></pre>
+    </div>
+              
+              
+              
+
+        </div>
+        
+        <div class="section">
+    <h2>Print Numbers संख्याएँ प्रिंट करना</h2>
+
+    <p>आप संख्याएँ प्रिंट करने के लिए <b>println()</b> मेथड का भी उपयोग कर सकते हैं।</p>
+    
+    <p>हालाँकि, टेक्स्ट की तरह हम संख्याओं को डबल कोट्स ("") में नहीं डालते:</p>
+
+    <p><b>उदाहरण:</b></p>
+    <pre>
+System.out.println(3);
+System.out.println(358);
+System.out.println(50000);
+    </pre>
+
+    <p><b>Output:</b></p>
+    <pre>
+3
+358
+50000
+    </pre>
+
+    <p>आप <b>println()</b> मेथड के अंदर mathematical calculations (गणितीय गणना) भी कर सकते हैं:</p>
+        <p><b>उदाहरण:</b></p>        
+    <pre>
+System.out.println(3 + 3);
+System.out.println(2 * 5);
+    </pre>
+
+    <p><b>Output:</b></p>
+    <pre>
+6
+10
+    </pre>
+</div>
+        <hr>
+        <div class="section">
+    <h2>Java Comments जावा कमेंट्स</h2>
+
+    <p>Comments का उपयोग Java कोड को समझाने और उसे more readable(अधिक पठनीय) बनाने के लिए किया जा सकता है।</p>
+    <p>यह alternative code को test करते समय execution को रोकने के लिए भी इस्तेमाल किया जा सकता है।</p>
+
+    <h3>Single-line Comments एक लाइन के कमेंट्स</h3>
+    <p>Single-line comments दो forward slashes (<b>//</b>) से शुरू होते हैं।</p>
+    <p>// और लाइन के अंत के बीच का कोई भी text Java द्वारा ignore किया जाता है (execute नहीं होगा)।</p>
+
+    <p><b>उदाहरण:</b></p>
+    <pre>
+// This is a comment
+System.out.println("Hello World");
+    </pre>
+ <p><b>Output आउटपुट:</b></p>
+    <pre>
+
+Hello World
+    </pre>
+                <hr>
+    <p>लाइन के अंत में भी single-line comment इस्तेमाल किया जा सकता है:</p>
+         <p><b>उदाहरण:</b></p>       
+    <pre>
+System.out.println("Hello World"); // This is a comment
+    </pre>
+
+         <p><b>Output आउटपुट:</b></p>
+    <pre>
+Hello World
+    </pre>
+                <hr>
+    
+
+    <h3>Java Multi-line Comments मल्टी-लाइन कमेंट्स</h3>
+    <p>Multi-line comments <b>/*</b> से शुरू होते हैं और <b>*/</b> से खत्म होते हैं।</p>
+    <p>/* और */ के बीच का कोई भी text Java द्वारा ignore किया जाएगा।</p>
+
+    <p><b>उदाहरण:</b></p>
+    <pre>
+/* The code below will print the words Hello World
+   to the screen, and it is amazing */
+System.out.println("Hello World");
+    </pre>
+
+    <p><b>Output आउटपुट:</b></p>
+    <pre>
+Hello World
+    </pre>
+
+    <h3>Single or Multi-line comments? एक या दोनों?</h3>
+    <p>आप जिसको चाहो इस्तेमाल कर सकते हैं। आमतौर पर, छोटे comments के लिए <b>//</b> और लंबे comments के लिए <b>/* */</b> का उपयोग किया जाता है।</p>
+</div>
+
+        <hr>
+        
+        
+        
+        <div class="section">
+                <h2> Motivation Question</h2>
+    <h2>🎯 प्रश्न 5: व्यक्तिगत बजट कैलकुलेटर</h2>
+    
+    <h3>वास्तविक जीवन का परिदृश्य:</h3>
+    <p>आप अपने मासिक खर्चों को ट्रैक करना चाहते हैं और यह देखना चाहते हैं कि सभी खर्चों के बाद आपके पास कितना पैसा बचता है।</p>
+    
+    <h3>समस्या:</h3>
+    <p>एक प्रोग्राम बनाएं जो आपकी मासिक आय और विभिन्न खर्चों को ले, फिर गणना करे कि कितना पैसा बचा है।</p>
+
+    <h3>💡 संकेत:</h3>
+    <ul>
+        <li><code>System.out.print()</code> का उपयोग input values के लिए करें</li>
+        <li>आय और विभिन्न खर्चों को store करने के लिए variables का उपयोग करें</li>
+        <li>कुल खर्चों को आय से घटाकर शेष राशि प्राप्त करें</li>
+        <li>बेहतर formatting के लिए <code>\n</code> और <code>\t</code> जैसे escape sequences का उपयोग करें</li>
+    </ul>
+
+    <h3>✅ समाधान कोड:</h3>
+    <div class="code-block">
+public class BudgetCalculator {
+    public static void main(String[] args) {
+        // वेरिएबल्स इनिशियलाइज़ करें
+        double income = 25000.0;
+        double rent = 8000.0;
+        double food = 5000.0;
+        double transport = 2000.0;
+        double entertainment = 3000.0;
+        
+        // कुल खर्च और शेष राशि की गणना करें
+        double totalExpenses = rent + food + transport + entertainment;
+        double remaining = income - totalExpenses;
+        
+        // परिणाम दिखाएँ
+        System.out.println("=== व्यक्तिगत बजट कैलकुलेटर ===");
+        System.out.println("मासिक आय:\t\t₹" + income);
+        System.out.println("\n--- खर्च ---");
+        System.out.println("किराया:\t\t\t₹" + rent);
+        System.out.println("भोजन:\t\t\t₹" + food);
+        System.out.println("यातायात:\t\t₹" + transport);
+        System.out.println("मनोरंजन:\t\t₹" + entertainment);
+        System.out.println("-------------------------------");
+        System.out.println("कुल खर्च:\t\t₹" + totalExpenses);
+        System.out.println("\nशेष राशि:\t\t₹" + remaining);
+        
+        // शेष राशि के आधार पर अतिरिक्त संदेश
+        if (remaining > 0) {
+            System.out.println("\nबहुत अच्छा! इस महीने आपके पास बचत है! 💰");
+        } else {
+            System.out.println("\nसावधान! आप कमाई से ज्यादा खर्च कर रहे हैं! ⚠️");
+        }
+    }
+}
+    </div>
+
+    <h3>🖥️ अपेक्षित आउटपुट:</h3>
+    <div class="output-block">
+=== व्यक्तिगत बजट कैलकुलेटर ===
+मासिक आय:          ₹25000.0
+
+--- खर्च ---
+किराया:             ₹8000.0
+भोजन:               ₹5000.0
+यातायात:            ₹2000.0
+मनोरंजन:            ₹3000.0
+-------------------------------
+कुल खर्च:           ₹18000.0
+
+शेष राशि:           ₹7000.0
+
+बहुत अच्छा! इस महीने आपके पास बचत है! 💰
+    </div>
+</div>
+
+<div class="section">
+        <h2>Motivation Questions </h2>
+    <h2>🎯 प्रश्न 6: छात्र ग्रेड कार्ड जनरेटर</h2>
+    
+    <h3>वास्तविक जीवन का परिदृश्य:</h3>
+    <p>एक प्रोग्राम बनाएं जो विभिन्न विषयों में अंकों के साथ छात्र का ग्रेड कार्ड दिखाए और प्रतिशत की गणना करे।</p>
+    
+    <h3>समस्या:</h3>
+    <p>एक प्रोग्राम डिज़ाइन करें जो छात्र के विवरण, विषयों के अंक, कुल अंक और प्रतिशत के साथ एक फॉर्मेटेड ग्रेड कार्ड दिखाए।</p>
+
+    <h3>💡 संकेत:</h3>
+    <ul>
+        <li>फॉर्मेटिंग के लिए कई <code>println()</code> स्टेटमेंट्स का उपयोग करें</li>
+        <li>अलाइनमेंट के लिए <code>\t</code> escape sequence का उपयोग करें</li>
+        <li>कुल अंक और प्रतिशत की गणना करें</li>
+        <li>दिखने में आकर्षक रिपोर्ट कार्ड लेआउट बनाएं</li>
+    </ul>
+
+    <h3>✅ समाधान कोड:</h3>
+    <div class="code-block">
+public class GradeCardGenerator {
+    public static void main(String[] args) {
+        // छात्र की जानकारी
+        String studentName = "राम यादव";
+        String rollNumber = "2024001";
+        String className = "X - A";
+        
+        // विषयों के अंक
+        int english = 85;
+        int hindi = 78;
+        int mathematics = 92;
+        int science = 88;
+        int socialScience = 81;
+        
+        // गणनाएँ
+        int totalMarks = english + hindi + mathematics + science + socialScience;
+        double percentage = (totalMarks / 500.0) * 100;
+        
+        // ग्रेड कार्ड दिखाएँ
+        System.out.println("========================================");
+        System.out.println("           छात्र ग्रेड कार्ड           ");
+        System.out.println("========================================");
+        System.out.println("नाम:\t\t" + studentName);
+        System.out.println("रोल नंबर:\t" + rollNumber);
+        System.out.println("कक्षा:\t\t" + className);
+        System.out.println("----------------------------------------");
+        System.out.println("विषय\t\t\tअंक");
+        System.out.println("----------------------------------------");
+        System.out.println("अंग्रेजी\t\t" + english + "/100");
+        System.out.println("हिंदी\t\t\t" + hindi + "/100");
+        System.out.println("गणित\t\t\t" + mathematics + "/100");
+        System.out.println("विज्ञान\t\t\t" + science + "/100");
+        System.out.println("सामाजिक विज्ञान\t" + socialScience + "/100");
+        System.out.println("----------------------------------------");
+        System.out.println("कुल\t\t\t" + totalMarks + "/500");
+        System.out.println("प्रतिशत\t\t\t" + percentage + "%");
+        System.out.println("========================================");
+        
+        // प्रदर्शन संदेश
+        if (percentage >= 90) {
+            System.out.println("उत्कृष्ट प्रदर्शन! 🎉");
+        } else if (percentage >= 75) {
+            System.out.println("बहुत अच्छा प्रदर्शन! 👍");
+        } else if (percentage >= 60) {
+            System.out.println("अच्छा प्रदर्शन! 👏");
+        } else {
+            System.out.println("मेहनत जारी रखें! 💪");
+        }
+    }
+}
+    </div>
+
+    <h3>🖥️ अपेक्षित आउटपुट:</h3>
+    <div class="output-block">
+========================================
+           छात्र ग्रेड कार्ड           
+========================================
+नाम:           राम यादव
+रोल नंबर:      2024001
+कक्षा:         X - A
+----------------------------------------
+विषय                   अंक
+----------------------------------------
+अंग्रेजी               85/100
+हिंदी                  78/100
+गणित                  92/100
+विज्ञान                88/100
+सामाजिक विज्ञान        81/100
+----------------------------------------
+कुल                    424/500
+प्रतिशत                84.8%
+========================================
+बहुत अच्छा प्रदर्शन! 👍
+    </div>
+        
+        
+        
+        
+        <div style="border:1px solid #ccc; padding:10px; border-radius:6px; font-family:sans-serif;">
+<h3>🧩 प्रश्न 7 :</h3>
+<p>एक Java प्रोग्राम लिखिए जो 0 से 10,000,000 तक गिनती करे और हर संख्या के लिए स्क्रीन पर प्रिंट करे कि कितने प्रतिशत प्रगति हो चुकी है। प्रोग्राम का आउटपुट इस फॉर्मेट में होना चाहिए:</p>
+<pre>progress 0% 0
+progress 0% 1
+progress 0% 2
+...
+progress 100% 10000000</pre>
+<p>ध्यान दें कि:</p>
+<ul>
+<li>आपको <b>for loop</b> का उपयोग करना है।</li>
+<li>प्रतिशत प्रगति की गणना इस प्रकार करनी है: (currentNumber * 100) / totalNumber</li>
+<li>हर लाइन में "progress <i>percentage%</i> <i>currentNumber</i>" फॉर्मेट होना चाहिए।</li>
+<li>कुल संख्या 10,000,000 है।</li>
+</ul>
+<h4>संकेत:</h4>
+<p>आपको दो <b>int</b> वेरिएबल की जरूरत होगी: एक वर्तमान संख्या के लिए और एक टोटल संख्या के लिए।</p>
+
+<h3>💡 समाधान (Solution):</h3>
+<pre>
+public class Main {
+    public static void main(String[] args) {
+        int j = 0;
+        int a = 10000000;
+
+        for(int i = 0; i <= a; i++) {
+            j = i;
+            System.out.println("progress " + ((j * 100) / a) + "% " + i);
+        }
+    }
+}
+</pre>
+
+<h3>📌 अपेक्षित आउटपुट (Expected Output):</h3>
+<pre>
+progress 0% 0
+progress 0% 1
+progress 0% 2
+...
+progress 100% 10000000
+</pre>
+<p>नोट: आउटपुट में "..." केवल बीच के संख्याओं को दिखाने के लिए है। वास्तविक प्रोग्राम सभी संख्याओं को 0 से 10,000,000 तक प्रिंट करेगा।</p>
+</div>
+</div>
+
+</body>
+</html>
